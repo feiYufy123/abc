@@ -1,0 +1,56 @@
+{% extends "axfApp/base/base.html" %}
+{% load static %}
+
+{% block title %}首页{% endblock title %}
+
+{% block link %}
+    <link rel="stylesheet" type="text/css" href="{% static 'axfApp/home/css/home.css' %}">
+{% endblock link %}
+
+{% block script %}
+    <script type="application/javascript" src="{% static 'axfApp/home/js/home.js' %}"></script>
+{% endblock script %}
+
+{% block main %}
+    <div id="homeDiv">
+        <div class="swiper-container" id="topDiv">
+            <div class="swiper-wrapper">
+                {% for item in sliders %}
+                <div class="swiper-slide">
+                    <a href="#"><img src="{{ item.img }}" title="{{ item.name }}" /></a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div id="bottomDiv">
+            {% for item in mainDescriptions %}
+            <div class="description-group">
+                <div>
+                    <span class="category">{{ item.categoryName }}</span>
+                    <span class="more"><a href="#">更多&gt;</a></span>
+                </div>
+                <div class="guide">
+                    <a href="#"><img src="{{ item.img }}"></a>
+                </div>
+                <ul>
+                    {% for product in item.products %}
+                    <li>
+                        <div class="product-img">
+                            <a href="#"><img src="{{ product.img }}"></a>
+                        </div>
+                        <div class="long-name">
+                            <div>{{ product.name }}</div>
+                        </div>
+                        <div>
+                            <div>{{ product.specifics }}</div>
+                            <div>{{ product.price }}</div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock main %}

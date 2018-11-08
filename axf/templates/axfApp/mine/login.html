@@ -1,0 +1,35 @@
+{% extends 'axfApp/base/base.html' %}
+{% load static %}
+{% block title %}登录{% endblock title %}
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{% static 'axfApp/mine/css/login.css' %}">
+{% endblock link %}
+{% block script %}
+<script type="application/javascript" src="{% static 'axfApp/mine/js/login.js' %}"></script>
+{% endblock script %}
+
+
+
+{% block main %}
+<div id="loginDiv">
+    <a href="/mine/">返回</a>
+    <hr/>
+
+    <div id="box">
+        <form action="{% url 'axf:login' %}?from={{ fromPath }}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="exampleInputEmail1">手机:</label>
+                <input value="" id="phone" type="text" class="form-control" id="exampleInputEmail1" placeholder="username" name="phone">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">验证码:</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="验证码" name="verifycode">
+            </div>
+            <button id="smsBtn" type="button" class="btn btn-default">发送验证码</button>
+            <button type="submit" class="btn btn-default">登陆</button>
+        </form>
+    </div>
+</div>
+{% endblock main %}

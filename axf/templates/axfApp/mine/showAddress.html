@@ -1,0 +1,37 @@
+{% extends 'axfApp/base/base.html' %}
+{% load static %}
+{% block title %}地址{% endblock title %}
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{% static 'axfApp/mine/css/showAddress.css' %}">
+{% endblock link %}
+{% block script %}
+<script type="application/javascript" src="{% static 'axfApp/mine/js/showAddress.js' %}"></script>
+{% endblock script %}
+
+
+
+{% block main %}
+<div id="showAddressDiv">
+    <a href="/mine/">返回</a>
+    <hr/>
+
+    <div>
+        <ul>
+            {% for item in addresses %}
+            <li style="border-bottom: solid 1px red">
+                <div>
+                    <p>{{ item.name }}</p>
+                    <p>{{ item.phone }}</p>
+                    <p>{{ item.address }}</p>
+                </div>
+                <div><a href="/changeAddress/?addressid={{ item.id }}">修改</a></div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <a href="/addAddress/">新增地址</a>
+
+</div>
+{% endblock main %}
